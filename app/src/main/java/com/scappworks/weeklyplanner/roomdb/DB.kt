@@ -12,7 +12,7 @@ import com.scappworks.weeklyplanner.roomdb.tasktable.TaskDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Weekday::class, Task::class], version = 1, exportSchema = false)
+@Database(entities = [Weekday::class, Task::class], version = 2, exportSchema = false)
 public abstract class DB : RoomDatabase() {
     abstract fun weekdayDao(): WeekdayDao
     abstract fun taskDao(): TaskDao
@@ -31,7 +31,11 @@ public abstract class DB : RoomDatabase() {
                     context.applicationContext,
                     DB::class.java,
                     "word_database"
-                ).addCallback(PlannerDatabaseCallback(scope)).build()
+                )
+                    // Used for clearing db on db updates
+                    //.fallbackToDestructiveMigration()
+                    .addCallback(PlannerDatabaseCallback(scope))
+                    .build()
                 INSTANCE = instance
                 // return instance
                 instance

@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
             weekdays.let { }
         })
 
-        plannerViewModel.allTasks.observe(this, { tasks ->
-            tasks.let {  }
+        plannerViewModel.allTasks.observe(this, Observer { tasks ->
+            tasks.let { }
         })
     }
 }
