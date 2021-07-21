@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
+import com.scappworks.weeklyplanner.recyclerviews.WeekdayRvAdapter
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
 
@@ -16,8 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val weekdayRecyclerView = findViewById<RecyclerView>(R.id.weekday_rv)
+        val weekdayRvAdapter = WeekdayRvAdapter()
+
+
         plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
-            weekdays.let { }
+            weekdays.let {  }
         })
 
         plannerViewModel.allTasks.observe(this, Observer { tasks ->
