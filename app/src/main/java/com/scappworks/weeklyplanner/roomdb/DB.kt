@@ -7,10 +7,12 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.WeekdayDao
+import com.scappworks.weeklyplanner.roomdb.tasktable.Task
+import com.scappworks.weeklyplanner.roomdb.tasktable.TaskDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Weekday::class), version = 1, exportSchema = false)
+@Database(entities = [Weekday::class, Task::class], version = 1, exportSchema = false)
 public abstract class DB : RoomDatabase() {
     abstract fun weekdayDao(): WeekdayDao
 
