@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 @Database(entities = [Weekday::class, Task::class], version = 1, exportSchema = false)
 public abstract class DB : RoomDatabase() {
     abstract fun weekdayDao(): WeekdayDao
+    abstract fun taskDao(): TaskDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

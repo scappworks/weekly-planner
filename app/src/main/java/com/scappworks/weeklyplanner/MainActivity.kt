@@ -19,5 +19,9 @@ class MainActivity : AppCompatActivity() {
         plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
             weekdays.let { }
         })
+
+        plannerViewModel.allTasks.observe(this, { tasks ->
+            tasks.let {  }
+        })
     }
 }

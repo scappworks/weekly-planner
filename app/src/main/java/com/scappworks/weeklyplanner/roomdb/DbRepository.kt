@@ -13,13 +13,13 @@ class DbRepository(private val weekdayDao: WeekdayDao, private val taskDao: Task
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(weekday: Weekday) {
+    suspend fun insertWeekday(weekday: Weekday) {
         weekdayDao.insert(weekday)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(task: Task) {
+    suspend fun insertTask(task: Task) {
         taskDao.insert(task)
     }
     }
