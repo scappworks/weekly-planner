@@ -61,7 +61,9 @@ public abstract class DB : RoomDatabase() {
             weekdayDao.deleteAllWeekdays()
 
             // Add weekdays
-            var weekday = Weekday(0, "Sunday")
+            var weekday = Weekday(0, "Clear")
+            weekdayDao.insert(weekday)
+            weekday = Weekday(0, "Sunday")
             weekdayDao.insert(weekday)
             weekday = Weekday(0, "Monday")
             weekdayDao.insert(weekday)
