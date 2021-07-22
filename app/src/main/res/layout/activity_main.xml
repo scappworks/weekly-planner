@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
+    <TextView
+        android:id="@+id/top_box"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/clear_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/top_box"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/sunday_card"
+        app:layout_constraintRight_toLeftOf="@id/sunday_card"
         app:layout_constraintBottom_toTopOf="@id/wednesday_card">
 
         <TextView
@@ -20,15 +29,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Clear"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"
+            />
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/sunday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/top_box"
         app:layout_constraintLeft_toRightOf="@id/clear_card"
         app:layout_constraintRight_toLeftOf="@id/monday_card"
         app:layout_constraintBottom_toTopOf="@id/thursday_card">
@@ -38,15 +50,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Sunday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/monday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/top_box"
         app:layout_constraintLeft_toRightOf="@id/sunday_card"
         app:layout_constraintRight_toLeftOf="@id/tuesday_card"
         app:layout_constraintBottom_toTopOf="@id/friday_card">
@@ -56,15 +70,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Monday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tuesday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/top_box"
         app:layout_constraintLeft_toRightOf="@id/monday_card"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/saturday_card">
@@ -74,80 +90,97 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Tuesday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/wednesday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@id/clear_card"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/thursday_card"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/bottom_box">
 
         <TextView
             android:id="@+id/wednesday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Wednesday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/thursday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@id/sunday_card"
         app:layout_constraintLeft_toRightOf="@id/wednesday_card"
         app:layout_constraintRight_toRightOf="@id/friday_card"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/bottom_box">
 
         <TextView
             android:id="@+id/thursday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Thursday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/friday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@id/monday_card"
         app:layout_constraintLeft_toRightOf="@id/thursday_card"
-        app:layout_constraintRight_toRightOf="@id/saturday_card"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintRight_toLeftOf="@id/saturday_card"
+        app:layout_constraintBottom_toTopOf="@id/bottom_box">
 
         <TextView
             android:id="@+id/friday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Friday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/saturday_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@id/tuesday_card"
         app:layout_constraintLeft_toRightOf="@id/friday_card"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/bottom_box">
 
         <TextView
             android:id="@+id/saturday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Saturday"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:gravity="center"/>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/bottom_box"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
