@@ -2,14 +2,17 @@ package com.scappworks.weeklyplanner
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.recyclerviews.WeekdayRvAdapter
+import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -48,5 +51,23 @@ class MainActivity : AppCompatActivity() {
         fridayButtonText.text = "Fri"
         saturdayButtonText.text = "Sat"
         sundayButtonText.text = "Sun"
+
+        checkDay("Mon")
+    }
+
+    private fun checkDay(dayIn: String): Weekday? {
+        var dayOut: Weekday? = null
+        plannerViewModel.allWeekdays.observe(this, { weekdays ->
+            weekdays?.let {
+                weekdays.forEach {
+                    val dayAbr = it.day.substring(0,3)
+
+                    if (dayIn == dayAbr) {
+                        dayOut = it
+                    }
+                }
+            }
+        })
+        return dayOut
     }
 }
