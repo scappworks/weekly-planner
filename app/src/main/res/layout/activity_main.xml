@@ -19,6 +19,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
+        android:onClick="buttonClick"
         app:layout_constraintTop_toBottomOf="@id/top_box"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/sunday_card"
@@ -28,7 +29,6 @@
             android:id="@+id/clear_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Clear"
             android:textSize="20sp"
             android:gravity="center"
             />

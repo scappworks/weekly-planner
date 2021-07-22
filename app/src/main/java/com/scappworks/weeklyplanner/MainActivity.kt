@@ -3,7 +3,9 @@ package com.scappworks.weeklyplanner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
+import androidx.cardview.widget.CardView
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,12 +44,13 @@ class MainActivity : AppCompatActivity() {
         val saturdayButton = binding.saturdayCard
         val saturdayButtonText = binding.saturdayCardText
 
+        // Setting day card names
         clearButtonText.text = "Clear"
         sundayButtonText.text = "Sun"
         mondayButtonText.text = "Mon"
-        tuesdayButtonText.text = "Tues"
+        tuesdayButtonText.text = "Tue"
         wednesdayButtonText.text = "Wed"
-        thursdayButtonText.text = "Thurs"
+        thursdayButtonText.text = "Thu"
         fridayButtonText.text = "Fri"
         saturdayButtonText.text = "Sat"
         sundayButtonText.text = "Sun"
@@ -60,14 +63,38 @@ class MainActivity : AppCompatActivity() {
         plannerViewModel.allWeekdays.observe(this, { weekdays ->
             weekdays?.let {
                 weekdays.forEach {
-                    val dayAbr = it.day.substring(0,3)
-
-                    if (dayIn == dayAbr) {
-                        dayOut = it
+                    if (dayIn.length > 3) {
+                        if (dayIn == "clear_card" && it.day == "Clear") {
+                            // Confirm/clear tasks here
+                                dayOut = it
+                            Log.i("worked?", it.day)
+                        }
                     }
+                    else {
+                        val dayAbr = it.day.substring(0,3)
+
+                        if (dayIn == dayAbr) {
+                            dayOut = it
+                        }
+                    }
+
                 }
             }
         })
         return dayOut
+    }
+
+    fun buttonClick(view: View) {
+        val s = R.id.clear_card_text
+        when(view.id) {
+            R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString())
+//            R.id.clear_card -> // Do stuff here
+//            R.id.clear_card -> // Do stuff here
+//            R.id.clear_card -> // Do stuff here
+//            R.id.clear_card -> // Do stuff here
+//            R.id.clear_card -> // Do stuff here
+//            R.id.clear_card -> // Do stuff here
+//            R.id.clear_card -> // Do stuff here
+        }
     }
 }
