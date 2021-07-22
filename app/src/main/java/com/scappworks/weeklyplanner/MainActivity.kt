@@ -3,6 +3,7 @@ package com.scappworks.weeklyplanner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
@@ -21,6 +22,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val clearButtonText = binding.clearCardText
+        val sundayButtonText = binding.sundayCardText
+        val mondayButtonText = binding.mondayCardText
+        val tuesdaybuttonText = binding.tuesdayCardText
+        val wednesdayCardText = binding.wednesdayCardText
+        val thursdayCardText = binding.thursdayCardText
+        val fridayCardText = binding.fridayCardText
+        val saturdayCardText = binding.saturdayCardText
+
+        clearButtonText.text = "Clear"
+        sundayButtonText.text = "Sun"
+        mondayButtonText.text = "Mon"
+        tuesdaybuttonText.text = "Tues"
+        wednesdayCardText.text = "Wed"
+        thursdayCardText.text = "Thurs"
+        fridayCardText.text = "Fri"
+        saturdayCardText.text = "Sat"
+        sundayButtonText.text = "Sun"
 //        val weekdayRecyclerView = binding.weekdayRv
 //        val weekdayRvAdapter = WeekdayRvAdapter()
 //        weekdayRecyclerView.adapter = weekdayRvAdapter

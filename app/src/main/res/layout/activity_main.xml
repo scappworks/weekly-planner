@@ -49,7 +49,6 @@
             android:id="@+id/sunday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Sun"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -69,7 +68,6 @@
             android:id="@+id/monday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Mon"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -89,7 +87,6 @@
             android:id="@+id/tuesday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Tues"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -109,7 +106,6 @@
             android:id="@+id/wednesday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Wed"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -129,7 +125,6 @@
             android:id="@+id/thursday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Thurs"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -149,7 +144,6 @@
             android:id="@+id/friday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Fri"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -169,7 +163,6 @@
             android:id="@+id/saturday_card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Sat"
             android:textSize="20sp"
             android:gravity="center"/>
 
