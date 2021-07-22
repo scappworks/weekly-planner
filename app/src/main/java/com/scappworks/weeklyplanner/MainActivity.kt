@@ -6,20 +6,23 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.recyclerviews.WeekdayRvAdapter
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private val plannerViewModel: PlannerViewModel by viewModels {
         PlannerViewModelFactory((application as PlannerApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val weekdayRecyclerView = findViewById<RecyclerView>(R.id.weekday_rv)
+        val weekdayRecyclerView = binding.weekdayRv
         val weekdayRvAdapter = WeekdayRvAdapter()
         weekdayRecyclerView.adapter = weekdayRvAdapter
         weekdayRecyclerView.layoutManager = LinearLayoutManager(this)
