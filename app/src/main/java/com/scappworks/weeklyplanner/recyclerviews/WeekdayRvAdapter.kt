@@ -22,10 +22,10 @@ class WeekdayRvAdapter : ListAdapter<Weekday, WeekdayRvAdapter.WeekdayViewHolder
     }
 
     class WeekdayViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val wordItemView: TextView = itemView.findViewById(R.id.weekday_rv)
+        private val weekdayItemView: TextView = itemView.findViewById(R.id.weekday_rv_item)
 
         fun bind(text: String?) {
-            wordItemView.text = text
+            weekdayItemView.text = text
         }
 
         companion object {

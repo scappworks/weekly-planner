@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.recyclerviews.WeekdayRvAdapter
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
@@ -28,11 +27,11 @@ class MainActivity : AppCompatActivity() {
         weekdayRecyclerView.layoutManager = LinearLayoutManager(this)
 
         plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
-            //weekdays.let { weekdayRvAdapter.submitList(it) }
+            weekdays?.let { weekdayRvAdapter.submitList(it) }
         })
 
         plannerViewModel.allTasks.observe(this, Observer { tasks ->
-            tasks.let { }
+            tasks?.let { }
         })
     }
 }
