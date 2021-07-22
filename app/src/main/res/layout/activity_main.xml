@@ -4,16 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weekday_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clear_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/sunday_card"
+        app:layout_constraintBottom_toTopOf="@id/wednesday_card">
+
+        <TextView
+            android:id="@+id/clear_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Clear"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sunday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/clear_card"
+        app:layout_constraintRight_toLeftOf="@id/monday_card"
+        app:layout_constraintBottom_toTopOf="@id/thursday_card">
+
+        <TextView
+            android:id="@+id/sunday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sunday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/monday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/sunday_card"
+        app:layout_constraintRight_toLeftOf="@id/tuesday_card"
+        app:layout_constraintBottom_toTopOf="@id/friday_card">
+
+        <TextView
+            android:id="@+id/monday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Monday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tuesday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/monday_card"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/saturday_card">
+
+        <TextView
+            android:id="@+id/tuesday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Tuesday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/wednesday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clear_card"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/thursday_card"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/wednesday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Wednesday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/thursday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sunday_card"
+        app:layout_constraintLeft_toRightOf="@id/wednesday_card"
+        app:layout_constraintRight_toRightOf="@id/friday_card"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/thursday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Thursday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/friday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/monday_card"
+        app:layout_constraintLeft_toRightOf="@id/thursday_card"
+        app:layout_constraintRight_toRightOf="@id/saturday_card"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/friday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Friday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/saturday_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tuesday_card"
+        app:layout_constraintLeft_toRightOf="@id/friday_card"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/saturday_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Saturday"
+            android:textSize="25sp" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

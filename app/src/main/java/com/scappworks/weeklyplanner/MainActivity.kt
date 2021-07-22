@@ -21,17 +21,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val weekdayRecyclerView = binding.weekdayRv
-        val weekdayRvAdapter = WeekdayRvAdapter()
-        weekdayRecyclerView.adapter = weekdayRvAdapter
-        weekdayRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
-            weekdays?.let { weekdayRvAdapter.submitList(it) }
-        })
-
-        plannerViewModel.allTasks.observe(this, Observer { tasks ->
-            tasks?.let { }
-        })
+//        val weekdayRecyclerView = binding.weekdayRv
+//        val weekdayRvAdapter = WeekdayRvAdapter()
+//        weekdayRecyclerView.adapter = weekdayRvAdapter
+//        weekdayRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+//
+//        plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
+//            weekdays?.let { weekdayRvAdapter.submitList(it) }
+//        })
+//
+//        plannerViewModel.allTasks.observe(this, Observer { tasks ->
+//            tasks?.let { }
+//        })
     }
 }
