@@ -22,35 +22,31 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val clearButton = binding.clearCard
         val clearButtonText = binding.clearCardText
+        val sundayButton = binding.sundayCard
         val sundayButtonText = binding.sundayCardText
+        val mondayCard = binding.mondayCard
         val mondayButtonText = binding.mondayCardText
-        val tuesdaybuttonText = binding.tuesdayCardText
-        val wednesdayCardText = binding.wednesdayCardText
-        val thursdayCardText = binding.thursdayCardText
-        val fridayCardText = binding.fridayCardText
-        val saturdayCardText = binding.saturdayCardText
+        val tuesdayButton = binding.tuesdayCard
+        val tuesdayButtonText = binding.tuesdayCardText
+        val wednesdayButton = binding.wednesdayCard
+        val wednesdayButtonText = binding.wednesdayCardText
+        val thursdayButton = binding.thursdayCard
+        val thursdayButtonText = binding.thursdayCardText
+        val fridayButton = binding.fridayCard
+        val fridayButtonText = binding.fridayCardText
+        val saturdayButton = binding.saturdayCard
+        val saturdayButtonText = binding.saturdayCardText
 
         clearButtonText.text = "Clear"
         sundayButtonText.text = "Sun"
         mondayButtonText.text = "Mon"
-        tuesdaybuttonText.text = "Tues"
-        wednesdayCardText.text = "Wed"
-        thursdayCardText.text = "Thurs"
-        fridayCardText.text = "Fri"
-        saturdayCardText.text = "Sat"
+        tuesdayButtonText.text = "Tues"
+        wednesdayButtonText.text = "Wed"
+        thursdayButtonText.text = "Thurs"
+        fridayButtonText.text = "Fri"
+        saturdayButtonText.text = "Sat"
         sundayButtonText.text = "Sun"
-//        val weekdayRecyclerView = binding.weekdayRv
-//        val weekdayRvAdapter = WeekdayRvAdapter()
-//        weekdayRecyclerView.adapter = weekdayRvAdapter
-//        weekdayRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-//
-//        plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
-//            weekdays?.let { weekdayRvAdapter.submitList(it) }
-//        })
-//
-//        plannerViewModel.allTasks.observe(this, Observer { tasks ->
-//            tasks?.let { }
-//        })
     }
 }
