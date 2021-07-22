@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val weekdayRecyclerView = binding.weekdayRv
         val weekdayRvAdapter = WeekdayRvAdapter()
         weekdayRecyclerView.adapter = weekdayRvAdapter
-        weekdayRecyclerView.layoutManager = LinearLayoutManager(this)
+        weekdayRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         plannerViewModel.allWeekdays.observe(this, Observer { weekdays ->
             weekdays?.let { weekdayRvAdapter.submitList(it) }
