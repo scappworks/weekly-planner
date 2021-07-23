@@ -3,18 +3,23 @@ package com.scappworks.weeklyplanner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.activity.viewModels
+import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
+import com.scappworks.weeklyplanner.databinding.ActivityWeekdayBinding
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
 
 class WeekdayActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWeekdayBinding
     private val plannerViewModel: PlannerViewModel by viewModels {
         PlannerViewModelFactory((application as PlannerApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weekday)
+        binding = ActivityWeekdayBinding.inflate(LayoutInflater)
+        setContentView(binding.root)
 
         val mainActivityIntent = intent
         val selectedDay = mainActivityIntent.getIntExtra("dayId", 0)
