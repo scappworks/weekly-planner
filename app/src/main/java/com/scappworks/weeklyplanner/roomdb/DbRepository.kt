@@ -22,4 +22,16 @@ class DbRepository(private val weekdayDao: WeekdayDao, private val taskDao: Task
     suspend fun insertTask(task: Task) {
         taskDao.insert(task)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteTask(task: Task) {
+        taskDao.deleteTask(task)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAllTasks() {
+        taskDao.deleteAllTasks()
+    }
     }

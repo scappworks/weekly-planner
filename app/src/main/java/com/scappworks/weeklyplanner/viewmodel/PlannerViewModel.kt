@@ -18,6 +18,14 @@ class PlannerViewModel(private val repository: DbRepository) : ViewModel() {
     fun insertTask(task: Task) = viewModelScope.launch {
         repository.insertTask(task)
     }
+
+    fun deleteTask(task: Task) = viewModelScope.launch {
+        repository.deleteTask(task)
+    }
+
+    fun deleteAllTasks() = viewModelScope.launch {
+        repository.deleteAllTasks()
+    }
 }
 
 class PlannerViewModelFactory(private val repository: DbRepository) : ViewModelProvider.Factory {

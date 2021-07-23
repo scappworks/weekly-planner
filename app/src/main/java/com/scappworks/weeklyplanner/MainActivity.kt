@@ -1,10 +1,13 @@
 package com.scappworks.weeklyplanner
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.view.children
 import androidx.lifecycle.Observer
@@ -57,6 +60,29 @@ class MainActivity : AppCompatActivity() {
         sundayButtonText.text = "Sun"
     }
 
+    private fun clearDb() {
+        val alertDialog: AlertDialog? = this?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setPositiveButton("Clear",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            plannerViewModel.deleteAllTasks()
+                            })
+                setNegativeButton("Cancel",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            // User cancelled the dialog
+                        })
+            }
+                    .setTitle("Clear tasks?")
+                    .setMessage("Are you sure you want to clear the weeks tasks?")
+
+            // Create the AlertDialog
+            builder.create()
+        }
+
+                alertDialog?.show()
+    }
+
     private fun checkDay(dayIn: String): Weekday? {
         var dayOut: Weekday? = null
         plannerViewModel.allWeekdays.observe(this, { weekdays ->
@@ -64,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                 weekdays.forEach {
                         if (dayIn == "clear_card" && it.day == "Clear") {
                             // Confirm/clear tasks here
+                                clearDb()
                                 dayOut = it
                         }
                     else {
@@ -85,8 +112,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buttonClick(view: View) {
-        val s = view.id
-        when(s) {
+        when(view.id) {
             R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString())
             R.id.sunday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.sunday_card).toString())
             R.id.monday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.monday_card).toString())
