@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.databinding.ActivityWeekdayBinding
 import com.scappworks.weeklyplanner.recyclerviews.TaskRvAdapter
@@ -29,6 +30,7 @@ class WeekdayActivity : AppCompatActivity() {
         val taskRv = binding.tasksRv
         val taskRvAdapter = TaskRvAdapter()
         taskRv.adapter = taskRvAdapter
+        taskRv.layoutManager = LinearLayoutManager(this)
 
         plannerViewModel.allWeekdays.observe(this, {weekdays ->
             weekdays?.let {
@@ -42,7 +44,10 @@ class WeekdayActivity : AppCompatActivity() {
 
         plannerViewModel.allTasks.observe(this,  { tasks ->
             tasks?.let {
-                if (it.count() > 0) {
+                if (tasks.count() > 0) {
+
+                    // Query db for weekday
+
                     binding.noTasks.visibility = View.GONE
                     binding.tasksRv.visibility = View.VISIBLE
                     taskRvAdapter.submitList(tasks)

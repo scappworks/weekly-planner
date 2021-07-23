@@ -51,12 +51,12 @@ public abstract class DB : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    populateDatabase(database.weekdayDao())
+                    populateDatabase(database.weekdayDao(), database.taskDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(weekdayDao: WeekdayDao) {
+        suspend fun populateDatabase(weekdayDao: WeekdayDao, taskDao: TaskDao) {
             // Delete all content here.
             weekdayDao.deleteAllWeekdays()
 
@@ -77,6 +77,9 @@ public abstract class DB : RoomDatabase() {
             weekdayDao.insert(weekday)
             weekday = Weekday(0, "Saturday")
             weekdayDao.insert(weekday)
+
+            val testTask = Task(0,"test task", 2)
+            taskDao.insert(testTask)
         }
     }
 }
