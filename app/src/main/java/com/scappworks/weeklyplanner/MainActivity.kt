@@ -65,16 +65,13 @@ class MainActivity : AppCompatActivity() {
                         if (dayIn == "clear_card" && it.day == "Clear") {
                             // Confirm/clear tasks here
                                 dayOut = it
-                            Log.i("worked?", it.day)
                         }
                     else {
-                            val dayInAbr = dayIn.substring(0, 3).toLowerCase(Locale.ROOT)
+                        val dayInAbr = dayIn.substring(0, 3).toLowerCase(Locale.ROOT)
                         val dayOutAbr = it.day.substring(0,3).toLowerCase(Locale.ROOT)
-                            Log.i("worked!", dayInAbr)
 
                         if (dayInAbr == dayOutAbr) {
                             dayOut = it
-                            Log.i("this day", it.day)
                         }
                     }
 
@@ -89,7 +86,6 @@ class MainActivity : AppCompatActivity() {
 
     fun buttonClick(view: View) {
         val s = view.id
-        Log.i("view in", s.toString())
         when(s) {
             R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString())
             R.id.sunday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.sunday_card).toString())
