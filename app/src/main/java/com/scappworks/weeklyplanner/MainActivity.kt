@@ -126,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        //dayOut?.let { startWeekdayActivity(it) }
     }
 
     fun buttonClick(view: View) {
