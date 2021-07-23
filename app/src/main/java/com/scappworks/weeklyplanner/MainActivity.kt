@@ -1,6 +1,7 @@
 package com.scappworks.weeklyplanner
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -62,6 +63,12 @@ class MainActivity : AppCompatActivity() {
         sundayButtonText.text = "Sun"
     }
 
+    private fun startWeekdayActivity(day: Weekday) {
+        val intent = Intent(this, WeekdayActivity::class.java)
+        intent.putExtra("dayId", day.id)
+        this.startActivity(intent)
+    }
+
     private fun clearDb() {
         val alertDialog: AlertDialog? = this?.let { outerIt ->
             val builder = AlertDialog.Builder(outerIt)
@@ -94,13 +101,12 @@ class MainActivity : AppCompatActivity() {
                 alertDialog?.show()
     }
 
-    private fun checkDay(dayIn: String): Weekday? {
+    private fun checkDay(dayIn: String) {
         var dayOut: Weekday? = null
         plannerViewModel.allWeekdays.observe(this, { weekdays ->
             weekdays?.let {
                 weekdays.forEach {
                         if (dayIn == "clear_card" && it.day == "Clear") {
-                            // Confirm/clear tasks here
                                 clearDb()
                                 dayOut = it
                         }
@@ -110,6 +116,7 @@ class MainActivity : AppCompatActivity() {
 
                         if (dayInAbr == dayOutAbr) {
                             dayOut = it
+                            dayOut?.let { startWeekdayActivity(it) }
                         }
                     }
 
@@ -119,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        return dayOut
+        //dayOut?.let { startWeekdayActivity(it) }
     }
 
     fun buttonClick(view: View) {
