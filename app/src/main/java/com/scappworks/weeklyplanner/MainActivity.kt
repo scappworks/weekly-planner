@@ -14,6 +14,7 @@ import com.scappworks.weeklyplanner.recyclerviews.WeekdayRvAdapter
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
+import java.util.*
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
@@ -54,8 +55,6 @@ class MainActivity : AppCompatActivity() {
         fridayButtonText.text = "Fri"
         saturdayButtonText.text = "Sat"
         sundayButtonText.text = "Sun"
-
-        checkDay("Mon")
     }
 
     private fun checkDay(dayIn: String): Weekday? {
@@ -63,21 +62,25 @@ class MainActivity : AppCompatActivity() {
         plannerViewModel.allWeekdays.observe(this, { weekdays ->
             weekdays?.let {
                 weekdays.forEach {
-                    if (dayIn.length > 3) {
                         if (dayIn == "clear_card" && it.day == "Clear") {
                             // Confirm/clear tasks here
                                 dayOut = it
                             Log.i("worked?", it.day)
                         }
-                    }
                     else {
-                        val dayAbr = it.day.substring(0,3)
+                            val dayInAbr = dayIn.substring(0, 3).toLowerCase(Locale.ROOT)
+                        val dayOutAbr = it.day.substring(0,3).toLowerCase(Locale.ROOT)
+                            Log.i("worked!", dayInAbr)
 
-                        if (dayIn == dayAbr) {
+                        if (dayInAbr == dayOutAbr) {
                             dayOut = it
+                            Log.i("this day", it.day)
                         }
                     }
 
+                    if (dayOut != null) {
+                        return@let
+                    }
                 }
             }
         })
@@ -85,16 +88,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buttonClick(view: View) {
-        val s = R.id.clear_card_text
-        when(view.id) {
+        val s = view.id
+        Log.i("view in", s.toString())
+        when(s) {
             R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString())
-//            R.id.clear_card -> // Do stuff here
-//            R.id.clear_card -> // Do stuff here
-//            R.id.clear_card -> // Do stuff here
-//            R.id.clear_card -> // Do stuff here
-//            R.id.clear_card -> // Do stuff here
-//            R.id.clear_card -> // Do stuff here
-//            R.id.clear_card -> // Do stuff here
+            R.id.sunday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.sunday_card).toString())
+            R.id.monday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.monday_card).toString())
+            R.id.tuesday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.tuesday_card).toString())
+            R.id.wednesday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.wednesday_card).toString())
+            R.id.thursday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.thursday_card).toString())
+            R.id.friday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.friday_card).toString())
+            R.id.saturday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.saturday_card).toString())
         }
     }
 }
