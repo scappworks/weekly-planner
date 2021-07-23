@@ -1,6 +1,7 @@
 package com.scappworks.weeklyplanner.roomdb
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import com.scappworks.weeklyplanner.roomdb.tasktable.Task
 import com.scappworks.weeklyplanner.roomdb.tasktable.TaskDao
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday

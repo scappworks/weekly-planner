@@ -11,6 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.view.children
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.recyclerviews.WeekdayRvAdapter
@@ -61,12 +63,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearDb() {
-        val alertDialog: AlertDialog? = this?.let {
-            val builder = AlertDialog.Builder(it)
+        val alertDialog: AlertDialog? = this?.let { outerIt ->
+            val builder = AlertDialog.Builder(outerIt)
             builder.apply {
                 setPositiveButton("Clear",
                         DialogInterface.OnClickListener { dialog, id ->
-                            plannerViewModel.deleteAllTasks()
+
+                            plannerViewModel.allTasks.observe(outerIt, {
+                                if (it.count() == 0) {
+                                    Toast.makeText(context, "No tasks to clear", Toast.LENGTH_SHORT).show()
+                                }
+                                else {
+                                    Log.i("before count", it.count().toString())
+                                    plannerViewModel.deleteAllTasks()
+                                    Toast.makeText(context, "Tasks cleared", Toast.LENGTH_SHORT).show()
+                                    Log.i("after count", it.count().toString())
+                                }
+                            })
                             })
                 setNegativeButton("Cancel",
                         DialogInterface.OnClickListener { dialog, id ->
