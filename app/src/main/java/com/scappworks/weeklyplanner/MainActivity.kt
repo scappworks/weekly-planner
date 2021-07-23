@@ -74,10 +74,8 @@ class MainActivity : AppCompatActivity() {
                                     Toast.makeText(context, "No tasks to clear", Toast.LENGTH_SHORT).show()
                                 }
                                 else {
-                                    Log.i("before count", it.count().toString())
                                     plannerViewModel.deleteAllTasks()
                                     Toast.makeText(context, "Tasks cleared", Toast.LENGTH_SHORT).show()
-                                    Log.i("after count", it.count().toString())
                                 }
                             })
                             })
