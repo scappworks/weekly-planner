@@ -43,8 +43,8 @@ class WeekdayActivity : AppCompatActivity() {
 
                         plannerViewModel.allTasks.observe(this,  { tasks ->
                             tasks?.let {
-                                // If tasks exist in the db
-                                if (tasks.count() > 0) {
+                                // If tasks exist for the day
+                                var hasTasks = false
                                     // List of tasks for this day
                                     val dayTasks: MutableList<Task> = mutableListOf()
 
@@ -55,8 +55,11 @@ class WeekdayActivity : AppCompatActivity() {
                                         * that will be presented */
                                         if (task.weekdayId == weekday.id) {
                                             dayTasks.add(task)
+                                            hasTasks = true
                                         }
                                     }
+
+                                if (hasTasks) {
                                     taskRvAdapter.submitList(dayTasks)
                                     // Hide no tasks view and show task recyclerview
                                     binding.noTasks.visibility = View.GONE
