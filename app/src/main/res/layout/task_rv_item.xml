@@ -4,7 +4,7 @@
     android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/weekday_rv_item"
+        android:id="@+id/task_rv_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"

@@ -23,10 +23,10 @@ class TaskRvAdapter : ListAdapter<Task, TaskRvAdapter.TaskViewHolder>(TaskCompar
     }
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val weekdayItemView: TextView = itemView.findViewById(R.id.weekday_rv_item)
+        private val taskItemView: TextView = itemView.findViewById(R.id.task_rv_item)
 
         fun bind(text: String?) {
-            weekdayItemView.text = text
+            taskItemView.text = text
         }
 
         companion object {
