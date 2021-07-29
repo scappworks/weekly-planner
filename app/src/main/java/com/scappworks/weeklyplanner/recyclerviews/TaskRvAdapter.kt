@@ -23,22 +23,18 @@ class TaskRvAdapter(private val activity: WeekdayActivity) : ListAdapter<Task, T
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.task, activity)
+        holder.bind(current.task, activity, current)
     }
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val taskItemView: TextView = itemView.findViewById(R.id.task_rv_item)
 
-        fun bind(text: String?, activity: WeekdayActivity) {
+        fun bind(text: String?, activity: WeekdayActivity, currentTask: Task) {
             taskItemView.text = text
 
             itemView.setOnLongClickListener{
-                activity.testFun()
+                activity.deleteTask(currentTask)
                 return@setOnLongClickListener true
-            }
-
-            fun testFun() {
-
             }
         }
 

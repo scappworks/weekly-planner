@@ -1,5 +1,6 @@
 package com.scappworks.weeklyplanner
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.databinding.ActivityWeekdayBinding
@@ -79,7 +81,26 @@ class WeekdayActivity : AppCompatActivity() {
         })
     }
 
-    fun testFun() {
-        Toast.makeText(this, "worked!", Toast.LENGTH_SHORT).show()
+    fun deleteTask(task: Task) {
+        Log.i("yerp", task.task)
+        val alertDialog: AlertDialog? = this?.let { outerIt ->
+            val builder = AlertDialog.Builder(outerIt)
+            builder.apply {
+                setPositiveButton("Clear",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            plannerViewModel.deleteTask(task)
+                        })
+                setNegativeButton("Cancel",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            // User cancelled the dialog
+                        })
+            }
+                    .setTitle("Clear task?")
+                    .setMessage("Are you sure you want to clear this task?")
+
+            // Create the AlertDialog
+            builder.create()
+            builder.show()
+        }
     }
 }
