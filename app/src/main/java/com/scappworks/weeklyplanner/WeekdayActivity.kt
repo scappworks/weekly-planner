@@ -1,12 +1,17 @@
 package com.scappworks.weeklyplanner
 
+import android.app.Activity
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +26,19 @@ class WeekdayActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWeekdayBinding
     private val plannerViewModel: PlannerViewModel by viewModels {
         PlannerViewModelFactory((application as PlannerApplication).repository)
+    }
+
+    val contractResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
+        if (result?.resultCode == Activity.RESULT_OK) {
+            val taskString = result.data?.getStringExtra("newTask").toString()
+            val taskDayId = result.data!!.getIntExtra("dayId", 0)
+            val task: Task = Task(0, taskString, taskDayId)
+            plannerViewModel.insertTask(task)
+        }
+        else {
+            Log.i("this", "failed")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,10 +97,15 @@ class WeekdayActivity : AppCompatActivity() {
                 }
             }
         })
+
+        binding.addTaskButton.setOnClickListener {
+            val intent = Intent(this, AddTaskActivity::class.java)
+            intent.putExtra("dayId", selectedDay)
+            contractResult.launch(intent)
+        }
     }
 
     fun deleteTask(task: Task) {
-        Log.i("yerp", task.task)
         val alertDialog: AlertDialog? = this?.let { outerIt ->
             val builder = AlertDialog.Builder(outerIt)
             builder.apply {
