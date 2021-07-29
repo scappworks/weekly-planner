@@ -1,17 +1,21 @@
 package com.scappworks.weeklyplanner.recyclerviews
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.scappworks.weeklyplanner.R
+import com.scappworks.weeklyplanner.WeekdayActivity
 import com.scappworks.weeklyplanner.roomdb.tasktable.Task
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 
-class TaskRvAdapter : ListAdapter<Task, TaskRvAdapter.TaskViewHolder>(TaskComparator()) {
+class TaskRvAdapter(private val activity: WeekdayActivity) : ListAdapter<Task, TaskRvAdapter.TaskViewHolder>(TaskComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder.create(parent)
@@ -19,14 +23,23 @@ class TaskRvAdapter : ListAdapter<Task, TaskRvAdapter.TaskViewHolder>(TaskCompar
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.task)
+        holder.bind(current.task, activity)
     }
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val taskItemView: TextView = itemView.findViewById(R.id.task_rv_item)
 
-        fun bind(text: String?) {
+        fun bind(text: String?, activity: WeekdayActivity) {
             taskItemView.text = text
+
+            itemView.setOnLongClickListener{
+                activity.testFun()
+                return@setOnLongClickListener true
+            }
+
+            fun testFun() {
+
+            }
         }
 
         companion object {

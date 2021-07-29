@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
@@ -29,7 +30,7 @@ class WeekdayActivity : AppCompatActivity() {
         val selectedDay = mainActivityIntent.getIntExtra("dayId", 0)
         val header = binding.topBox
         val taskRv = binding.tasksRv
-        val taskRvAdapter = TaskRvAdapter()
+        val taskRvAdapter = TaskRvAdapter(this)
         taskRv.adapter = taskRvAdapter
         taskRv.layoutManager = LinearLayoutManager(this)
 
@@ -76,5 +77,9 @@ class WeekdayActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    fun testFun() {
+        Toast.makeText(this, "worked!", Toast.LENGTH_SHORT).show()
     }
 }
