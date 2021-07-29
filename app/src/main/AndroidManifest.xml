@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeeklyPlanner">
-        <activity android:name=".WeekdayActivity"></activity>
+        <activity android:name=".AddTaskActivity"></activity>
+        <activity android:name=".WeekdayActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

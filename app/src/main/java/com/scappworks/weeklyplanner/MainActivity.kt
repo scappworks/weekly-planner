@@ -25,21 +25,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val clearButton = binding.clearCard
         val clearButtonText = binding.clearCardText
-        val sundayButton = binding.sundayCard
         val sundayButtonText = binding.sundayCardText
-        val mondayCard = binding.mondayCard
         val mondayButtonText = binding.mondayCardText
-        val tuesdayButton = binding.tuesdayCard
         val tuesdayButtonText = binding.tuesdayCardText
-        val wednesdayButton = binding.wednesdayCard
         val wednesdayButtonText = binding.wednesdayCardText
-        val thursdayButton = binding.thursdayCard
         val thursdayButtonText = binding.thursdayCardText
-        val fridayButton = binding.fridayCard
         val fridayButtonText = binding.fridayCardText
-        val saturdayButton = binding.saturdayCard
         val saturdayButtonText = binding.saturdayCardText
 
         // Setting day card names
