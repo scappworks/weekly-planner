@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
+import com.scappworks.weeklyplanner.roomdb.tasktable.Task
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
@@ -19,6 +20,9 @@ class MainActivity : AppCompatActivity() {
     private val plannerViewModel: PlannerViewModel by viewModels {
         PlannerViewModelFactory((application as PlannerApplication).repository)
     }
+
+    lateinit var weekdayList: List<Weekday>
+    lateinit var taskList: List<Task>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,14 @@ class MainActivity : AppCompatActivity() {
         fridayButtonText.text = "Fri"
         saturdayButtonText.text = "Sat"
         sundayButtonText.text = "Sun"
+
+        plannerViewModel.allTasks.observe(this, {
+            taskList = it
+        })
+
+        plannerViewModel.allWeekdays.observe(this, {
+            weekdayList = it
+        })
     }
 
     private fun startWeekdayActivity(day: Weekday) {
@@ -52,23 +64,19 @@ class MainActivity : AppCompatActivity() {
         this.startActivity(intent)
     }
 
-    private fun clearDb() {
+    private fun clearDb(taskList: List<Task>) {
         val alertDialog: AlertDialog? = this?.let { outerIt ->
             val builder = AlertDialog.Builder(outerIt)
             builder.apply {
                 setPositiveButton("Clear",
                         DialogInterface.OnClickListener { dialog, id ->
-
-                            plannerViewModel.allTasks.observe(outerIt, {
-                                if (it.count() == 0) {
-                                    Toast.makeText(context, "No tasks to clear", Toast.LENGTH_SHORT).show()
-                                }
-                                else {
-                                    plannerViewModel.deleteAllTasks()
-                                    Toast.makeText(context, "Tasks cleared", Toast.LENGTH_SHORT).show()
-                                }
-                            })
-                            })
+                            if (taskList.count() == 0) {
+                                Toast.makeText(context, "No tasks to clear", Toast.LENGTH_SHORT).show()
+                            } else {
+                                plannerViewModel.deleteAllTasks()
+                                Toast.makeText(context, "Tasks cleared", Toast.LENGTH_SHORT).show()
+                            }
+                        })
                 setNegativeButton("Cancel",
                         DialogInterface.OnClickListener { dialog, id ->
                             // User cancelled the dialog
@@ -77,50 +85,37 @@ class MainActivity : AppCompatActivity() {
                     .setTitle("Clear tasks?")
                     .setMessage("Are you sure you want to clear the weeks tasks?")
 
-            // Create the AlertDialog
             builder.create()
         }
 
-                alertDialog?.show()
+        alertDialog?.show()
     }
 
-    private fun checkDay(dayIn: String) {
-        var dayOut: Weekday? = null
-        plannerViewModel.allWeekdays.observe(this, { weekdays ->
-            weekdays?.let {
-                weekdays.forEach {
-                        if (dayIn == "clear_card" && it.day == "Clear") {
-                                clearDb()
-                                dayOut = it
-                        }
-                    else {
-                        val dayInAbr = dayIn.substring(0, 3).toLowerCase(Locale.ROOT)
-                        val dayOutAbr = it.day.substring(0,3).toLowerCase(Locale.ROOT)
+    private fun checkDay(dayIn: String, weekdayList: List<Weekday>) {
+        weekdayList.forEach {
+            if (dayIn == "clear_card" && it.day == "Clear") {
+                clearDb(taskList)
+            } else {
+                val dayInAbr = dayIn.substring(0, 3).toLowerCase(Locale.ROOT)
+                val dayOutAbr = it.day.substring(0, 3).toLowerCase(Locale.ROOT)
 
-                        if (dayInAbr == dayOutAbr) {
-                            dayOut = it
-                            dayOut?.let { startWeekdayActivity(it) }
-                        }
-                    }
-
-                    if (dayOut != null) {
-                        return@let
-                    }
+                if (dayInAbr == dayOutAbr) {
+                    startWeekdayActivity(it)
                 }
             }
-        })
+        }
     }
 
     fun buttonClick(view: View) {
-        when(view.id) {
-            R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString())
-            R.id.sunday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.sunday_card).toString())
-            R.id.monday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.monday_card).toString())
-            R.id.tuesday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.tuesday_card).toString())
-            R.id.wednesday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.wednesday_card).toString())
-            R.id.thursday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.thursday_card).toString())
-            R.id.friday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.friday_card).toString())
-            R.id.saturday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.saturday_card).toString())
+        when (view.id) {
+            R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString(), weekdayList)
+            R.id.sunday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.sunday_card).toString(), weekdayList)
+            R.id.monday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.monday_card).toString(), weekdayList)
+            R.id.tuesday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.tuesday_card).toString(), weekdayList)
+            R.id.wednesday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.wednesday_card).toString(), weekdayList)
+            R.id.thursday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.thursday_card).toString(), weekdayList)
+            R.id.friday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.friday_card).toString(), weekdayList)
+            R.id.saturday_card -> checkDay(view.context.resources.getResourceEntryName(R.id.saturday_card).toString(), weekdayList)
         }
     }
 }
