@@ -77,9 +77,6 @@ public abstract class DB : RoomDatabase() {
             weekdayDao.insert(weekday)
             weekday = Weekday(0, "Saturday")
             weekdayDao.insert(weekday)
-
-            val testTask = Task(0,"test task", 2)
-            taskDao.insert(testTask)
         }
     }
 }
