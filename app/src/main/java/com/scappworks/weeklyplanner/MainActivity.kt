@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         PlannerViewModelFactory((application as PlannerApplication).repository)
     }
 
-    lateinit var weekdayList: List<Weekday>
-    lateinit var taskList: List<Task>
+    private lateinit var weekdayList: List<Weekday>
+    private lateinit var taskList: List<Task>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
