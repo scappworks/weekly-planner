@@ -28,16 +28,13 @@ class WeekdayActivity : AppCompatActivity() {
         PlannerViewModelFactory((application as PlannerApplication).repository)
     }
 
-    val contractResult = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
+    private val contractResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
         if (result?.resultCode == Activity.RESULT_OK) {
             val taskString = result.data?.getStringExtra("newTask").toString()
             val taskDayId = result.data!!.getIntExtra("dayId", 0)
-            val task: Task = Task(0, taskString, taskDayId)
+            val task = Task(0, taskString, taskDayId)
             plannerViewModel.insertTask(task)
-        }
-        else {
-            Log.i("this", "failed")
         }
     }
 
@@ -54,7 +51,7 @@ class WeekdayActivity : AppCompatActivity() {
         taskRv.adapter = taskRvAdapter
         taskRv.layoutManager = LinearLayoutManager(this)
 
-        plannerViewModel.allWeekdays.observe(this, {weekdays ->
+        plannerViewModel.allWeekdays.observe(this, { weekdays ->
             weekdays?.let {
                 weekdays.forEach { weekday ->
                     // If the day ID passed in matches the day being looked at...
@@ -62,31 +59,30 @@ class WeekdayActivity : AppCompatActivity() {
                         // Set the header to the correct day, and start looking through tasks
                         header.text = weekday.day
 
-                        plannerViewModel.allTasks.observe(this,  { tasks ->
+                        plannerViewModel.allTasks.observe(this, { tasks ->
                             tasks?.let {
                                 // If tasks exist for the day
                                 var hasTasks = false
-                                    // List of tasks for this day
-                                    val dayTasks: MutableList<Task> = mutableListOf()
+                                // List of tasks for this day
+                                val dayTasks: MutableList<Task> = mutableListOf()
 
-                                    tasks.forEach { task ->
-                                        /* If the weekday ID of the task matches the ID of
+                                tasks.forEach { task ->
+                                    /* If the weekday ID of the task matches the ID of
                                         * the current day being looked at by the preceding
                                         * weekday foreach loop, add that task to the list
                                         * that will be presented */
-                                        if (task.weekdayId == weekday.id) {
-                                            dayTasks.add(task)
-                                            hasTasks = true
-                                        }
+                                    if (task.weekdayId == weekday.id) {
+                                        dayTasks.add(task)
+                                        hasTasks = true
                                     }
+                                }
 
                                 if (hasTasks) {
                                     taskRvAdapter.submitList(dayTasks)
                                     // Hide no tasks view and show task recyclerview
                                     binding.noTasks.visibility = View.GONE
                                     binding.tasksRv.visibility = View.VISIBLE
-                                }
-                                else {
+                                } else {
                                     // Hide task recyclerview and show no tasks view
                                     binding.noTasks.visibility = View.VISIBLE
                                     binding.tasksRv.visibility = View.GONE
@@ -106,7 +102,7 @@ class WeekdayActivity : AppCompatActivity() {
     }
 
     fun deleteTask(task: Task) {
-        val alertDialog: AlertDialog? = this?.let { outerIt ->
+        val alertDialog: AlertDialog? = this.let { outerIt ->
             val builder = AlertDialog.Builder(outerIt)
             builder.apply {
                 setPositiveButton("Clear",
