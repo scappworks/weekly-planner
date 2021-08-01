@@ -2,6 +2,7 @@ package com.scappworks.weeklyplanner
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,8 +10,10 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.recyclerviews.TaskRvAdapter
 import com.scappworks.weeklyplanner.roomdb.tasktable.Task
@@ -43,10 +46,13 @@ class MainActivity : AppCompatActivity() {
         val thursdayButtonText = binding.thursdayCardText
         val fridayButtonText = binding.fridayCardText
         val saturdayButtonText = binding.saturdayCardText
-        val testRv = binding.testRv
+
+
+        val testRv: RecyclerView = binding.testRv
         val testAdapter = TaskRvAdapter(WeekdayActivity())
         testRv.adapter = testAdapter
         testRv.layoutManager = LinearLayoutManager(this)
+
 
         // Setting day card names
         clearButtonText.text = "Clear"
@@ -61,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         plannerViewModel.allTasks.observe(this, {
             taskList = it
+            testList = mutableListOf()
 
             taskList.forEach {
                 if (it.weekdayId == 2) {
@@ -69,6 +76,35 @@ class MainActivity : AppCompatActivity() {
             }
 
             testAdapter.submitList(testList)
+
+            if (testList.count() == 0 ) {
+                val newConstraintSet: ConstraintSet? = ConstraintSet()
+                newConstraintSet?.clone(binding.sundayInner)
+                newConstraintSet?.connect(binding.noTasks.id, ConstraintSet.TOP,
+                    binding.sundayCardText.id, ConstraintSet.BOTTOM)
+                newConstraintSet?.applyTo(binding.sundayInner)
+
+                newConstraintSet?.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
+                binding.noTasks.id, ConstraintSet.TOP)
+                    newConstraintSet?.applyTo(binding.sundayInner)
+
+                binding.testRv.visibility = View.GONE
+                binding.noTasks.visibility = View.VISIBLE
+            } else {
+                val newConstraintSet: ConstraintSet? = ConstraintSet()
+                newConstraintSet?.clone(binding.sundayInner)
+                newConstraintSet?.connect(binding.testRv.id, ConstraintSet.TOP,
+                    binding.sundayCardText.id, ConstraintSet.BOTTOM)
+                newConstraintSet?.applyTo(binding.sundayInner)
+
+                newConstraintSet?.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
+                    binding.testRv.id, ConstraintSet.TOP)
+                newConstraintSet?.applyTo(binding.sundayInner)
+
+
+                binding.testRv.visibility = View.VISIBLE
+                binding.noTasks.visibility = View.GONE
+            }
         })
 
         plannerViewModel.allWeekdays.observe(this, {
