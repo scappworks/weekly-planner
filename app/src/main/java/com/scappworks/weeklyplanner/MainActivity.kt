@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var weekdayList: List<Weekday>
     private lateinit var taskList: List<Task>
-
-    private var testList = mutableListOf<Task>()
+    private var taskDayList = mutableListOf<Task>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +45,10 @@ class MainActivity : AppCompatActivity() {
         val thursdayButtonText = binding.thursdayCardText
         val fridayButtonText = binding.fridayCardText
         val saturdayButtonText = binding.saturdayCardText
-
-
-        val testRv: RecyclerView = binding.testRv
-        val testAdapter = TaskRvAdapter(WeekdayActivity())
-        testRv.adapter = testAdapter
-        testRv.layoutManager = LinearLayoutManager(this)
+        val sundayRv: RecyclerView = binding.sundayRv
+        val sundayAdapter = TaskRvAdapter(WeekdayActivity())
+        sundayRv.adapter = sundayAdapter
+        sundayRv.layoutManager = LinearLayoutManager(this)
 
 
         // Setting day card names
@@ -65,19 +62,23 @@ class MainActivity : AppCompatActivity() {
         saturdayButtonText.text = "Sat"
         sundayButtonText.text = "Sun"
 
-        plannerViewModel.allTasks.observe(this, {
-            taskList = it
-            testList = mutableListOf()
+        plannerViewModel.allWeekdays.observe(this, {
+            weekdayList = it
+        })
+
+        plannerViewModel.allTasks.observe(this, { tasks ->
+            taskList = tasks
+            taskDayList = mutableListOf()
 
             taskList.forEach {
                 if (it.weekdayId == 2) {
-                    testList.add(it)
+                    taskDayList.add(it)
                 }
             }
 
-            testAdapter.submitList(testList)
+            sundayAdapter.submitList(taskDayList)
 
-            if (testList.count() == 0 ) {
+            if (taskDayList.count() == 0 ) {
                 val newConstraintSet: ConstraintSet? = ConstraintSet()
                 newConstraintSet?.clone(binding.sundayInner)
                 newConstraintSet?.connect(binding.noTasks.id, ConstraintSet.TOP,
@@ -88,27 +89,23 @@ class MainActivity : AppCompatActivity() {
                 binding.noTasks.id, ConstraintSet.TOP)
                     newConstraintSet?.applyTo(binding.sundayInner)
 
-                binding.testRv.visibility = View.GONE
+                binding.sundayRv.visibility = View.GONE
                 binding.noTasks.visibility = View.VISIBLE
             } else {
                 val newConstraintSet: ConstraintSet? = ConstraintSet()
                 newConstraintSet?.clone(binding.sundayInner)
-                newConstraintSet?.connect(binding.testRv.id, ConstraintSet.TOP,
+                newConstraintSet?.connect(binding.sundayRv.id, ConstraintSet.TOP,
                     binding.sundayCardText.id, ConstraintSet.BOTTOM)
                 newConstraintSet?.applyTo(binding.sundayInner)
 
                 newConstraintSet?.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
-                    binding.testRv.id, ConstraintSet.TOP)
+                    binding.sundayRv.id, ConstraintSet.TOP)
                 newConstraintSet?.applyTo(binding.sundayInner)
 
 
-                binding.testRv.visibility = View.VISIBLE
+                binding.sundayRv.visibility = View.VISIBLE
                 binding.noTasks.visibility = View.GONE
             }
-        })
-
-        plannerViewModel.allWeekdays.observe(this, {
-            weekdayList = it
         })
     }
 
