@@ -81,16 +81,16 @@ class MainActivity : AppCompatActivity() {
             if (taskDayList.count() == 0 ) {
                 val newConstraintSet: ConstraintSet? = ConstraintSet()
                 newConstraintSet?.clone(binding.sundayInner)
-                newConstraintSet?.connect(binding.noTasks.id, ConstraintSet.TOP,
+                newConstraintSet?.connect(binding.sundayNoTasks.id, ConstraintSet.TOP,
                     binding.sundayCardText.id, ConstraintSet.BOTTOM)
                 newConstraintSet?.applyTo(binding.sundayInner)
 
                 newConstraintSet?.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
-                binding.noTasks.id, ConstraintSet.TOP)
+                binding.sundayNoTasks.id, ConstraintSet.TOP)
                     newConstraintSet?.applyTo(binding.sundayInner)
 
                 binding.sundayRv.visibility = View.GONE
-                binding.noTasks.visibility = View.VISIBLE
+                binding.sundayNoTasks.visibility = View.VISIBLE
             } else {
                 val newConstraintSet: ConstraintSet? = ConstraintSet()
                 newConstraintSet?.clone(binding.sundayInner)
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 binding.sundayRv.visibility = View.VISIBLE
-                binding.noTasks.visibility = View.GONE
+                binding.sundayNoTasks.visibility = View.GONE
             }
         })
     }

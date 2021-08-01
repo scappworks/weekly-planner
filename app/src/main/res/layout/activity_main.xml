@@ -132,7 +132,7 @@
                 app:layout_constraintVertical_weight="2" />
 
             <TextView
-                android:id="@+id/no_tasks"
+                android:id="@+id/sunday_no_tasks"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="No tasks"
@@ -180,12 +180,56 @@
             android:background="@color/black"
             android:layout_gravity="bottom"/>
 
-        <TextView
-            android:id="@+id/monday_card_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/monday_inner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/monday_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/monday_rv"
+                app:layout_constraintVertical_weight="1"
+                android:gravity="center">
+            </TextView>
+
+            <FrameLayout
+                android:id="@+id/monday_text_rv_sep"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/monday_card_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/monday_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/monday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2" />
+
+            <TextView
+                android:id="@+id/monday_no_tasks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="No tasks"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/monday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -221,12 +265,56 @@
             android:background="@color/black"
             android:layout_gravity="bottom"/>
 
-        <TextView
-            android:id="@+id/tuesday_card_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tuesday_inner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tuesday_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tuesday_rv"
+                app:layout_constraintVertical_weight="1"
+                android:gravity="center">
+            </TextView>
+
+            <FrameLayout
+                android:id="@+id/tuesday_text_rv_sep"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/tuesday_card_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tuesday_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/tuesday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2" />
+
+            <TextView
+                android:id="@+id/tuesday_no_tasks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="No tasks"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/tuesday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -262,12 +350,56 @@
             android:background="@color/black"
             android:layout_gravity="bottom"/>
 
-        <TextView
-            android:id="@+id/wednesday_card_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/wednesday_inner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wednesday_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/wednesday_rv"
+                app:layout_constraintVertical_weight="1"
+                android:gravity="center">
+            </TextView>
+
+            <FrameLayout
+                android:id="@+id/wednesday_text_rv_sep"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/wednesday_card_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wednesday_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/wednesday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2" />
+
+            <TextView
+                android:id="@+id/wednesday_no_tasks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="No tasks"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/wednesday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -303,12 +435,56 @@
             android:background="@color/black"
             android:layout_gravity="bottom"/>
 
-        <TextView
-            android:id="@+id/thursday_card_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/thursday_inner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/thursday_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/thursday_rv"
+                app:layout_constraintVertical_weight="1"
+                android:gravity="center">
+            </TextView>
+
+            <FrameLayout
+                android:id="@+id/thursday_text_rv_sep"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/thursday_card_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/thursday_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/thursday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2" />
+
+            <TextView
+                android:id="@+id/thursday_no_tasks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="No tasks"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/thursday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -344,12 +520,56 @@
             android:background="@color/black"
             android:layout_gravity="bottom"/>
 
-        <TextView
-            android:id="@+id/friday_card_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/friday_inner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/friday_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/friday_rv"
+                app:layout_constraintVertical_weight="1"
+                android:gravity="center">
+            </TextView>
+
+            <FrameLayout
+                android:id="@+id/friday_text_rv_sep"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/friday_card_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/friday_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/friday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2" />
+
+            <TextView
+                android:id="@+id/friday_no_tasks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="No tasks"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/friday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -385,12 +605,56 @@
             android:background="@color/black"
             android:layout_gravity="bottom"/>
 
-        <TextView
-            android:id="@+id/saturday_card_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/saturday_inner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/saturday_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/saturday_rv"
+                app:layout_constraintVertical_weight="1"
+                android:gravity="center">
+            </TextView>
+
+            <FrameLayout
+                android:id="@+id/saturday_text_rv_sep"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/saturday_card_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/saturday_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/saturday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2" />
+
+            <TextView
+                android:id="@+id/saturday_no_tasks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="No tasks"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/saturday_card_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
