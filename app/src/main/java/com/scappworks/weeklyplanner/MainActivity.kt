@@ -5,6 +5,7 @@ import android.content.Intent
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -49,6 +50,30 @@ class MainActivity : AppCompatActivity() {
         val sundayAdapter = TaskRvAdapter(WeekdayActivity())
         sundayRv.adapter = sundayAdapter
         sundayRv.layoutManager = LinearLayoutManager(this)
+        val mondayRv: RecyclerView = binding.sundayRv
+        val mondayAdapter = TaskRvAdapter(WeekdayActivity())
+        mondayRv.adapter = sundayAdapter
+        mondayRv.layoutManager = LinearLayoutManager(this)
+        val tuesdayRv: RecyclerView = binding.sundayRv
+        val tuesdayAdapter = TaskRvAdapter(WeekdayActivity())
+        tuesdayRv.adapter = sundayAdapter
+        tuesdayRv.layoutManager = LinearLayoutManager(this)
+        val wednesdayRv: RecyclerView = binding.sundayRv
+        val wednesdayAdapter = TaskRvAdapter(WeekdayActivity())
+        wednesdayRv.adapter = sundayAdapter
+        wednesdayRv.layoutManager = LinearLayoutManager(this)
+        val thursdayRv: RecyclerView = binding.sundayRv
+        val thursdayAdapter = TaskRvAdapter(WeekdayActivity())
+        thursdayRv.adapter = sundayAdapter
+        thursdayRv.layoutManager = LinearLayoutManager(this)
+        val fridayRv: RecyclerView = binding.sundayRv
+        val fridayAdapter = TaskRvAdapter(WeekdayActivity())
+        fridayRv.adapter = sundayAdapter
+        fridayRv.layoutManager = LinearLayoutManager(this)
+        val saturdayRv: RecyclerView = binding.sundayRv
+        val saturdayAdapter = TaskRvAdapter(WeekdayActivity())
+        saturdayRv.adapter = sundayAdapter
+        saturdayRv.layoutManager = LinearLayoutManager(this)
 
 
         // Setting day card names
@@ -70,43 +95,53 @@ class MainActivity : AppCompatActivity() {
             taskList = tasks
             taskDayList = mutableListOf()
 
-            taskList.forEach {
-                if (it.weekdayId == 2) {
-                    taskDayList.add(it)
-                }
-            }
-
+            //Log.i("this", weekdayList[1].toString())
+            taskDayList = sortTasks(weekdayList[1], taskList)
             sundayAdapter.submitList(taskDayList)
 
-            if (taskDayList.count() == 0 ) {
-                val newConstraintSet: ConstraintSet? = ConstraintSet()
-                newConstraintSet?.clone(binding.sundayInner)
-                newConstraintSet?.connect(binding.sundayNoTasks.id, ConstraintSet.TOP,
-                    binding.sundayCardText.id, ConstraintSet.BOTTOM)
-                newConstraintSet?.applyTo(binding.sundayInner)
+            //sundayAdapter.submitList(taskDayList)
 
-                newConstraintSet?.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
+            if (taskDayList.count() == 0 ) {
+                val newConstraintSet: ConstraintSet = ConstraintSet()
+                newConstraintSet.clone(binding.sundayInner)
+                newConstraintSet.connect(binding.sundayNoTasks.id, ConstraintSet.TOP,
+                    binding.sundayCardText.id, ConstraintSet.BOTTOM)
+                newConstraintSet.applyTo(binding.sundayInner)
+
+                newConstraintSet.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
                 binding.sundayNoTasks.id, ConstraintSet.TOP)
-                    newConstraintSet?.applyTo(binding.sundayInner)
+                    newConstraintSet.applyTo(binding.sundayInner)
 
                 binding.sundayRv.visibility = View.GONE
                 binding.sundayNoTasks.visibility = View.VISIBLE
             } else {
-                val newConstraintSet: ConstraintSet? = ConstraintSet()
-                newConstraintSet?.clone(binding.sundayInner)
-                newConstraintSet?.connect(binding.sundayRv.id, ConstraintSet.TOP,
+                val newConstraintSet: ConstraintSet = ConstraintSet()
+                newConstraintSet.clone(binding.sundayInner)
+                newConstraintSet.connect(binding.sundayRv.id, ConstraintSet.TOP,
                     binding.sundayCardText.id, ConstraintSet.BOTTOM)
-                newConstraintSet?.applyTo(binding.sundayInner)
+                newConstraintSet.applyTo(binding.sundayInner)
 
-                newConstraintSet?.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
+                newConstraintSet.connect(binding.sundayCardText.id, ConstraintSet.BOTTOM,
                     binding.sundayRv.id, ConstraintSet.TOP)
-                newConstraintSet?.applyTo(binding.sundayInner)
+                newConstraintSet.applyTo(binding.sundayInner)
 
 
                 binding.sundayRv.visibility = View.VISIBLE
                 binding.sundayNoTasks.visibility = View.GONE
             }
         })
+    }
+
+    private fun sortTasks(day: Weekday, tasks: List<Task>): MutableList<Task> {
+        val newAdapterList = mutableListOf<Task>()
+
+        tasks.forEach {
+            if (it.weekdayId == day.id) {
+                newAdapterList.add(it)
+            }
+        }
+
+        return newAdapterList
     }
 
     private fun startWeekdayActivity(day: Weekday) {
