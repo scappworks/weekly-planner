@@ -5,10 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
+import com.scappworks.weeklyplanner.recyclerviews.TaskRvAdapter
 import com.scappworks.weeklyplanner.roomdb.tasktable.Task
 import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weekdayList: List<Weekday>
     private lateinit var taskList: List<Task>
 
+    private var testList = mutableListOf<Task>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -37,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         val thursdayButtonText = binding.thursdayCardText
         val fridayButtonText = binding.fridayCardText
         val saturdayButtonText = binding.saturdayCardText
+        val testRv = binding.testRv
+        val testAdapter = TaskRvAdapter(WeekdayActivity())
+        testRv.adapter = testAdapter
+        testRv.layoutManager = LinearLayoutManager(this)
 
         // Setting day card names
         clearButtonText.text = "Clear"
@@ -51,6 +60,14 @@ class MainActivity : AppCompatActivity() {
 
         plannerViewModel.allTasks.observe(this, {
             taskList = it
+
+            taskList.forEach {
+                if (it.weekdayId == 2) {
+                    testList.add(it)
+                }
+            }
+
+            testAdapter.submitList(testList)
         })
 
         plannerViewModel.allWeekdays.observe(this, {
