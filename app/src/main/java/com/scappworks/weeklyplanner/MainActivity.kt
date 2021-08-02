@@ -194,7 +194,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearDb(taskList: List<Task>) {
-        val alertDialog: AlertDialog? = this?.let { outerIt ->
+        val alertDialog: AlertDialog = this.let { outerIt ->
             val builder = AlertDialog.Builder(outerIt)
             builder.apply {
                 setPositiveButton("Clear",
@@ -217,7 +217,7 @@ class MainActivity : AppCompatActivity() {
             builder.create()
         }
 
-        alertDialog?.show()
+        alertDialog.show()
     }
 
     private fun checkDay(dayIn: String, weekdayList: List<Weekday>) {
