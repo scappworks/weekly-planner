@@ -89,54 +89,55 @@ class MainActivity : AppCompatActivity() {
 
         plannerViewModel.allWeekdays.observe(this, {
             weekdayList = it
-        })
 
-        plannerViewModel.allTasks.observe(this, { tasks ->
-            taskList = tasks
-            taskDayList = mutableListOf()
 
-            for (i in 1..7) {
+            plannerViewModel.allTasks.observe(this, { tasks ->
+                taskList = tasks
+                taskDayList = mutableListOf()
 
-                taskDayList = sortTasks(weekdayList[i], taskList)
+                for (i in 1..7) {
 
-                when (i) {
-                    1 -> {
-                        sundayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.sundayInner,
-                                binding.sundayCardText, sundayRv, binding.sundayNoTasks)
-                    }
-                    2 -> {
-                        mondayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.mondayInner,
-                                binding.mondayCardText, mondayRv, binding.mondayNoTasks)
-                    }
-                    3 -> {
-                        tuesdayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.tuesdayInner,
-                                binding.tuesdayCardText, tuesdayRv, binding.tuesdayNoTasks)
-                    }
-                    4 -> {
-                        wednesdayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.wednesdayInner,
-                                binding.wednesdayCardText, wednesdayRv, binding.wednesdayNoTasks)
-                    }
-                    5 -> {
-                        thursdayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.thursdayInner,
-                                binding.thursdayCardText, thursdayRv, binding.thursdayNoTasks)
-                    }
-                    6 -> {
-                        fridayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.fridayInner,
-                                binding.fridayCardText, fridayRv, binding.fridayNoTasks)
-                    }
-                    7 -> {
-                        saturdayAdapter.submitList(taskDayList)
-                        toggleVisibility(taskDayList, binding.saturdayInner,
-                                binding.saturdayCardText, saturdayRv, binding.saturdayNoTasks)
+                    taskDayList = sortTasks(weekdayList[i], taskList)
+
+                    when (i) {
+                        1 -> {
+                            sundayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.sundayInner,
+                                    binding.sundayCardText, sundayRv, binding.sundayNoTasks)
+                        }
+                        2 -> {
+                            mondayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.mondayInner,
+                                    binding.mondayCardText, mondayRv, binding.mondayNoTasks)
+                        }
+                        3 -> {
+                            tuesdayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.tuesdayInner,
+                                    binding.tuesdayCardText, tuesdayRv, binding.tuesdayNoTasks)
+                        }
+                        4 -> {
+                            wednesdayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.wednesdayInner,
+                                    binding.wednesdayCardText, wednesdayRv, binding.wednesdayNoTasks)
+                        }
+                        5 -> {
+                            thursdayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.thursdayInner,
+                                    binding.thursdayCardText, thursdayRv, binding.thursdayNoTasks)
+                        }
+                        6 -> {
+                            fridayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.fridayInner,
+                                    binding.fridayCardText, fridayRv, binding.fridayNoTasks)
+                        }
+                        7 -> {
+                            saturdayAdapter.submitList(taskDayList)
+                            toggleVisibility(taskDayList, binding.saturdayInner,
+                                    binding.saturdayCardText, saturdayRv, binding.saturdayNoTasks)
+                        }
                     }
                 }
-            }
+            })
         })
     }
 
