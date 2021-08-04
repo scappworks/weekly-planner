@@ -34,6 +34,7 @@
             android:layout_height="match_parent"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@color/red"
             />
 
         <FrameLayout
@@ -109,8 +110,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/sunday_rv"
             app:layout_constraintVertical_weight="1"
-            android:gravity="center">
-        </TextView>
+            android:gravity="center"
+            android:background="@color/purple_200" />
 
             <FrameLayout
                 android:id="@+id/sunday_text_rv_sep"
@@ -194,8 +195,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/monday_rv"
                 app:layout_constraintVertical_weight="1"
-                android:gravity="center">
-            </TextView>
+                android:gravity="center"
+                android:background="@color/purple_500" />
 
             <FrameLayout
                 android:id="@+id/monday_text_rv_sep"
@@ -279,8 +280,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tuesday_rv"
                 app:layout_constraintVertical_weight="1"
-                android:gravity="center">
-            </TextView>
+                android:gravity="center"
+                android:background="@color/purple_700"/>
 
             <FrameLayout
                 android:id="@+id/tuesday_text_rv_sep"
@@ -364,8 +365,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/wednesday_rv"
                 app:layout_constraintVertical_weight="1"
-                android:gravity="center">
-            </TextView>
+                android:gravity="center"
+                android:background="@color/teal_200"/>
 
             <FrameLayout
                 android:id="@+id/wednesday_text_rv_sep"
@@ -449,8 +450,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/thursday_rv"
                 app:layout_constraintVertical_weight="1"
-                android:gravity="center">
-            </TextView>
+                android:gravity="center"
+                android:background="@color/teal_700"/>
 
             <FrameLayout
                 android:id="@+id/thursday_text_rv_sep"
@@ -534,8 +535,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/friday_rv"
                 app:layout_constraintVertical_weight="1"
-                android:gravity="center">
-            </TextView>
+                android:gravity="center"
+                android:background="@color/blue"/>
 
             <FrameLayout
                 android:id="@+id/friday_text_rv_sep"
@@ -619,8 +620,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/saturday_rv"
                 app:layout_constraintVertical_weight="1"
-                android:gravity="center">
-            </TextView>
+                android:gravity="center"
+                android:background="@color/orange"/>
 
             <FrameLayout
                 android:id="@+id/saturday_text_rv_sep"
