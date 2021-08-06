@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Definition of all buttons
         val clearButtonText = binding.clearCardText
         val sundayButtonText = binding.sundayCardText
         val mondayButtonText = binding.mondayCardText
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         val thursdayButtonText = binding.thursdayCardText
         val fridayButtonText = binding.fridayCardText
         val saturdayButtonText = binding.saturdayCardText
+
+        // Definition of all recyclerviews and adapters
         val sundayRv: RecyclerView = binding.sundayRv
         val sundayAdapter = TaskRvAdapter(null)
         sundayRv.adapter = sundayAdapter
@@ -85,33 +88,40 @@ class MainActivity : AppCompatActivity() {
         fridayButtonText.text = "Fri"
         saturdayButtonText.text = "Sat"
 
+        // All adapters for easier passing into functions
         val adapterList: List<TaskRvAdapter> = listOf(
                 sundayAdapter, mondayAdapter, tuesdayAdapter, wednesdayAdapter,
                 thursdayAdapter, fridayAdapter, saturdayAdapter
         )
+        // All recyclerviews for easier passing into functions
         val rvList: List<RecyclerView> = listOf(
                 sundayRv, mondayRv, tuesdayRv, wednesdayRv, thursdayRv, fridayRv, saturdayRv
         )
 
         plannerViewModel.allWeekdays.observe(this, {
             weekdayList = it
-                    setAdapterLists(adapterList, rvList)
+            setAdapterLists(adapterList, rvList)
         })
 
         plannerViewModel.allTasks.observe(this, {
             taskList = it
-                    setAdapterLists(adapterList, rvList)
+            setAdapterLists(adapterList, rvList)
         })
     }
 
+    // Sets the correct list for each weekday adapter
     private fun setAdapterLists(adapterList: List<TaskRvAdapter>, rvList: List<RecyclerView>) {
+        // Only run if both weekdayList and taskList have been initialized already
         if (this::weekdayList.isInitialized  && this::taskList.isInitialized) {
             adapterList.forEach {
+                // Reset taskDayList so that tasks don't carry over to the next day
                 taskDayList = mutableListOf()
+                // Get index of current adapter. adapterList and rvList are a constant
+                // and identical count, so this index can be used for both
                 val i = adapterList.indexOf(it)
+                // sortTasks takes i + 1 because the db id starts at 1
+                // and our index starts at 0
                 taskDayList = sortTasks(weekdayList[i + 1], taskList)
-
-                Log.i("rvli", rvList[i].toString())
 
                 when (i) {
                     0 -> {
@@ -154,6 +164,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Toggles visibility of recyclerviews and 'no tasks' textview
     private fun toggleVisibility(taskDayList: List<Task>, inner: ConstraintLayout,
                                  cardText: View, rv: RecyclerView, noTask: View) {
         if (taskDayList.count() == 0 ) {
@@ -169,8 +180,6 @@ class MainActivity : AppCompatActivity() {
 
             rv.visibility = View.GONE
             noTask.visibility = View.VISIBLE
-
-            Log.i("this", "ran zero")
         } else {
             val newConstraintSet = ConstraintSet()
             newConstraintSet.clone(inner)
@@ -184,11 +193,10 @@ class MainActivity : AppCompatActivity() {
 
             rv.visibility = View.VISIBLE
             noTask.visibility = View.GONE
-
-            Log.i("this", "ran else")
         }
     }
 
+    // Sorts full task list into individual days and returns the single day's list
     private fun sortTasks(day: Weekday, tasks: List<Task>): MutableList<Task> {
         val newAdapterList = mutableListOf<Task>()
 
@@ -234,6 +242,7 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
+    // Check which day was pressed to start new activity with the correct day
     private fun checkDay(dayIn: String, weekdayList: List<Weekday>) {
         weekdayList.forEach {
             if (dayIn == "clear_card" && it.day == "Clear") {
@@ -249,6 +258,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Determine which card was pressed
     fun buttonClick(view: View) {
         when (view.id) {
             R.id.clear_card -> checkDay(view.context.resources.getResourceEntryName(R.id.clear_card).toString(), weekdayList)
