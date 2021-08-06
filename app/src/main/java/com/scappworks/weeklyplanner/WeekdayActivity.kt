@@ -19,6 +19,7 @@ import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.databinding.ActivityWeekdayBinding
 import com.scappworks.weeklyplanner.recyclerviews.TaskRvAdapter
 import com.scappworks.weeklyplanner.roomdb.tasktable.Task
+import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
 
@@ -28,6 +29,7 @@ class WeekdayActivity : AppCompatActivity() {
         PlannerViewModelFactory((application as PlannerApplication).repository)
     }
 
+    // Initialize result contract to send data back to activity that called this activity
     private val contractResult = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
         if (result?.resultCode == Activity.RESULT_OK) {
@@ -58,42 +60,44 @@ class WeekdayActivity : AppCompatActivity() {
                     if (weekday.id == selectedDay) {
                         // Set the header to the correct day, and start looking through tasks
                         header.text = weekday.day
-
-                        plannerViewModel.allTasks.observe(this, { tasks ->
-                            tasks?.let {
-                                // If tasks exist for the day
-                                var hasTasks = false
-                                // List of tasks for this day
-                                val dayTasks: MutableList<Task> = mutableListOf()
-
-                                tasks.forEach { task ->
-                                    /* If the weekday ID of the task matches the ID of
-                                        * the current day being looked at by the preceding
-                                        * weekday foreach loop, add that task to the list
-                                        * that will be presented */
-                                    if (task.weekdayId == weekday.id) {
-                                        dayTasks.add(task)
-                                        hasTasks = true
-                                    }
-                                }
-
-                                if (hasTasks) {
-                                    taskRvAdapter.submitList(dayTasks)
-                                    // Hide no tasks view and show task recyclerview
-                                    binding.noTasks.visibility = View.GONE
-                                    binding.tasksRv.visibility = View.VISIBLE
-                                } else {
-                                    // Hide task recyclerview and show no tasks view
-                                    binding.noTasks.visibility = View.VISIBLE
-                                    binding.tasksRv.visibility = View.GONE
-                                }
-                            }
-                        })
                     }
                 }
             }
         })
 
+        plannerViewModel.allTasks.observe(this, { tasks ->
+            tasks?.let {
+                // Do tasks exist for the day?
+                var hasTasks = false
+                // List of tasks for this day
+                val dayTasks: MutableList<Task> = mutableListOf()
+
+                tasks.forEach { task ->
+                    /* If the weekday ID of the task matches the ID that
+                        * was passed in from the previous activity,
+                        * add that task to the list
+                        * that will be presented */
+
+                        if (task.weekdayId == selectedDay) {
+                            dayTasks.add(task)
+                            hasTasks = true
+                        }
+                }
+
+                if (hasTasks) {
+                    taskRvAdapter.submitList(dayTasks)
+                    // Hide no tasks view and show task recyclerview
+                    binding.noTasks.visibility = View.GONE
+                    binding.tasksRv.visibility = View.VISIBLE
+                } else {
+                    // Hide task recyclerview and show no tasks view
+                    binding.noTasks.visibility = View.VISIBLE
+                    binding.tasksRv.visibility = View.GONE
+                }
+            }
+        })
+
+        // Send activity result to previous activity when finished
         binding.addTaskButton.setOnClickListener {
             val intent = Intent(this, AddTaskActivity::class.java)
             intent.putExtra("dayId", selectedDay)
