@@ -5,21 +5,16 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.scappworks.weeklyplanner.databinding.ActivityMainBinding
 import com.scappworks.weeklyplanner.databinding.ActivityWeekdayBinding
 import com.scappworks.weeklyplanner.recyclerviews.TaskRvAdapter
 import com.scappworks.weeklyplanner.roomdb.tasktable.Task
-import com.scappworks.weeklyplanner.roomdb.weekdaytable.Weekday
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModel
 import com.scappworks.weeklyplanner.viewmodel.PlannerViewModelFactory
 
