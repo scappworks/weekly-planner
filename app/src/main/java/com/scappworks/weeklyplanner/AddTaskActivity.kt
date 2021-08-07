@@ -17,6 +17,7 @@ class AddTaskActivity : AppCompatActivity() {
 
         val intent = intent
         val selectedDay = intent.getIntExtra("dayId", 0)
+        binding.addTaskHeader.text = setHeader(selectedDay)
 
         binding.taskSubmitButton.setOnClickListener {
             intent.putExtra("newTask", binding.addTaskEdittext.text.toString())
@@ -25,8 +26,6 @@ class AddTaskActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
-
-        binding.addTaskHeader.text = setHeader(selectedDay)
     }
 
     override fun onBackPressed() {
