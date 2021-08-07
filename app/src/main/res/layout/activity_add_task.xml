@@ -23,6 +23,7 @@
         android:layout_height="0dp"
         android:hint="New Task"
         android:textSize="50sp"
+        android:singleLine="true"
         app:layout_constraintTop_toBottomOf="@+id/add_task_header"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
