@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">weekly planner</string>
     <string name="add_task">Add Task</string>
     <string name="new_task">New Task</string>
     <string name="submit">Submit</string>
     <string name="weekly_planner">Weekly Planner</string>
+    <string name="no_tasks">No tasks</string>
+    <string name="no_tasks">No tasks</string>
     <string name="no_tasks">No tasks</string>
     <string name="tap_a_day_to_expand">Tap a day to expand</string>
 </resources>
