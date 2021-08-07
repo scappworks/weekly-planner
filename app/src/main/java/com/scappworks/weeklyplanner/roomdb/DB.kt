@@ -13,7 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [Weekday::class, Task::class], version = 2, exportSchema = false)
-public abstract class DB : RoomDatabase() {
+abstract class DB : RoomDatabase() {
     abstract fun weekdayDao(): WeekdayDao
     abstract fun taskDao(): TaskDao
 

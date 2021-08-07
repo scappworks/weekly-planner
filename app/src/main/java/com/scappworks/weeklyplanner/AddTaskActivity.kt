@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import com.scappworks.weeklyplanner.databinding.ActivityAddTaskBinding
 
 class AddTaskActivity : AppCompatActivity() {

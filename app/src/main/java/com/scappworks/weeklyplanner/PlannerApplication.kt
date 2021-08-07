@@ -7,7 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 class PlannerApplication : Application() {
-    val applicationScope = CoroutineScope(SupervisorJob())
-    val database by lazy { DB.getDatabase(this, applicationScope) }
+    private val applicationScope = CoroutineScope(SupervisorJob())
+    private val database by lazy { DB.getDatabase(this, applicationScope) }
     val repository by lazy { DbRepository(database.weekdayDao(), database.taskDao()) }
 }
