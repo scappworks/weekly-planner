@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.scappworks.weeklyplanner.databinding.ActivityAddTaskBinding
 
@@ -20,11 +21,15 @@ class AddTaskActivity : AppCompatActivity() {
         binding.addTaskHeader.text = setHeader(selectedDay)
 
         binding.taskSubmitButton.setOnClickListener {
-            intent.putExtra("newTask", binding.addTaskEdittext.text.toString())
-            intent.putExtra("dayId", selectedDay)
+            if (binding.addTaskEdittext.text.isNullOrBlank()) {
+                Toast.makeText(this, "No task entered", Toast.LENGTH_SHORT).show()
+            } else {
+                intent.putExtra("newTask", binding.addTaskEdittext.text.toString().trim())
+                intent.putExtra("dayId", selectedDay)
 
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
         }
     }
 
